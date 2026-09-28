@@ -1,0 +1,67 @@
+{# Card "Company information" on the customer page (hook displayAdminCustomers). #}
+{# Rendered inside the last <div class="row"> of @PrestaShop/Admin/Sell/Customer/view.html.twig #}
+<div class="col-md-6 awb2bcustomer-card-wrapper">
+  <div class="card awb2bcustomer-card">
+    <h3 class="card-header">
+      <i class="material-icons">business</i> {{ 'Company information'|trans({}, 'Modules.Awb2bcustomer.Admin') }}
+
+      <a href="{{ path('admin_customers_edit', {customerId: customerId}) }}"
+         class="tooltip-link float-right edit-link"
+         data-toggle="pstooltip"
+         title=""
+         data-placement="top"
+         data-original-title="{{ 'Edit'|trans({}, 'Admin.Actions') }}"
+      >
+        <i class="material-icons">edit</i>
+      </a>
+    </h3>
+    <div class="card-body">
+      <div class="row mb-1">
+        <div class="col-sm-4 text-sm-right font-weight-bold">
+          {{ 'Company'|trans({}, 'Modules.Awb2bcustomer.Admin') }}
+        </div>
+        <div class="awb2bcustomer-company col-sm-8">
+          {% if company is not empty %}
+            {{ company }}
+          {% else %}
+            <span class="text-muted">{{ 'Not provided'|trans({}, 'Modules.Awb2bcustomer.Admin') }}</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="row mb-1">
+        <div class="col-sm-4 text-sm-right font-weight-bold">
+          {{ 'SIRET'|trans({}, 'Modules.Awb2bcustomer.Admin') }}
+        </div>
+        <div class="awb2bcustomer-siret col-sm-8">
+          {% if siret is not empty %}
+            {{ siret }}
+          {% else %}
+            <span class="text-muted">{{ 'Not provided'|trans({}, 'Modules.Awb2bcustomer.Admin') }}</span>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if not b2bEnabled %}
+        <div class="alert alert-warning mb-0 mt-3" role="alert">
+          {{ 'The B2B mode is disabled (Shop Parameters > Customer Settings): these fields are not displayed on the registration form.'|trans({}, 'Modules.Awb2bcustomer.Admin') }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{# The hook is rendered at the bottom of the page, after the orders and carts.
+   Move the card right under "Basic information" (left column); if the core
+   markup changes, the card simply stays where the hook is. #}
+<script>
+  (function () {
+    var wrapper = document.querySelector('.awb2bcustomer-card-wrapper');
+    var card = document.querySelector('.awb2bcustomer-card');
+    var anchor = document.querySelector('.customer-personal-informations-card');
+    if (!wrapper || !card || !anchor) {
+      return;
+    }
+    anchor.after(card);
+    wrapper.remove();
+  })();
+</script>

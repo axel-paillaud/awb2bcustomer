@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="ModulesAwb2bcustomerAdmin.xlf" source-language="en" target-language="fr" datatype="plaintext">
+    <body>
+      <trans-unit id="cfc35e58f71549a666c109a846430da9" approved="yes">
+        <source>B2B customer</source>
+        <target state="final">Client B2B</target>
+      </trans-unit>
+      <trans-unit id="3b3e00beaa7d3bfdd2225d951fd3fb16" approved="yes">
+        <source>Mandatory company and SIRET fields at registration, company information on the customer page in the back-office.</source>
+        <target state="final">Champs société et SIRET obligatoires à l&apos;inscription, informations sur l&apos;entreprise sur la fiche client du back-office.</target>
+      </trans-unit>
+      <trans-unit id="bb8956c67b82c7444a80c6b2433dd8b4" approved="yes">
+        <source>Are you sure you want to uninstall this module?</source>
+        <target state="final">Êtes-vous sûr de vouloir désinstaller ce module ?</target>
+      </trans-unit>
+      <trans-unit id="a8eeda757e2f5e2706ca06e674f7fc70" approved="yes">
+        <source>Company information</source>
+        <target state="final">Entreprise</target>
+      </trans-unit>
+      <trans-unit id="1c76cbfe21c6f44c1d1e59d54f3e4420" approved="yes">
+        <source>Company</source>
+        <target state="final">Société</target>
+      </trans-unit>
+      <trans-unit id="4f68183551e5dbd7c341347ffe308682" approved="yes">
+        <source>SIRET</source>
+        <target state="final">SIRET</target>
+      </trans-unit>
+      <trans-unit id="34fac42b8df8fffbdf65a132304f46fa" approved="yes">
+        <source>Not provided</source>
+        <target state="final">Non renseigné</target>
+      </trans-unit>
+      <trans-unit id="a10cb77db2e346be70340ffcaaf8d2b1" approved="yes">
+        <source>The B2B mode is disabled (Shop Parameters &gt; Customer Settings): these fields are not displayed on the registration form.</source>
+        <target state="final">Le mode B2B est désactivé (Paramètres de la boutique &gt; Clients) : ces champs ne sont pas affichés sur le formulaire d&apos;inscription.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

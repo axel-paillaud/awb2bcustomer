@@ -1,0 +1,8 @@
+.git
+.gitignore
+bin
+node_modules
+.php_cs.cache
+config_fr.xml
+deploy.php
+CLAUDE.md
