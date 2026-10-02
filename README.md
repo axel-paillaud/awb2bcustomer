@@ -30,16 +30,25 @@ customer form.
 
 | Hook | Role |
 |---|---|
-| `additionalCustomerFormFields` | Makes `company` and `siret` mandatory: the theme renders the `required` attribute and the core validation (`AbstractForm::validate()`) rejects an empty value. Also sets the maximum length of `siret` to 14, the size of the column. Adds no field |
+| `additionalCustomerFormFields` | Makes `company` and `siret` mandatory: the theme renders the `required` attribute and the core validation (`AbstractForm::validate()`) rejects an empty value. Also sets the maximum length of `siret` to 14, the size of the column, and a help text under the field. Adds no field |
 | `displayAdminCustomers` | Card "Company information" (company, SIRET, edit link) on the customer page of the back-office (Customers > Customers > View), which only shows these fields in the edit form natively |
 
 The hooks do nothing when the B2B mode is disabled (the fields do not exist in the form); the card then
 shows a warning.
 
-### Format of the SIRET
+### Format of the SIRET: a free field
 
-No format check on purpose: the field also receives EU VAT numbers. To only accept French SIRET
-numbers (14 digits with a Luhn check), add a native constraint in `hookAdditionalCustomerFormFields()`:
+No format check on purpose. The field is used as a free professional identifier: French SIRET, SIREN,
+EU VAT number, or the situation of a customer without a company ("student", "company being set up").
+The core itself only applies `isGenericName` (no `<>={}` characters) and the length of the column.
+The help text under the field lists these uses and the 14 characters limit, and the label of the field is
+set by the theme translation of "Identification number" (`Shop.Forms.Labels`).
+
+The 14 characters limit cannot be raised without an override of `Customer::$definition` (plus an
+`ALTER TABLE` on the column), which is why it is kept as is.
+
+To only accept French SIRET numbers (14 digits with a Luhn check), add a native constraint in
+`hookAdditionalCustomerFormFields()`:
 
 ```php
 $fields['siret']->addConstraint('isSiret');
@@ -84,14 +93,16 @@ awb2bcustomer/
 │   ├── build-zip.sh                    # Release archive
 │   └── migrate-registrationfields.php  # One-shot migration from the FMM registrationfields module
 ├── translations/fr-FR/
-│   └── ModulesAwb2bcustomerAdmin.fr-FR.xlf
+│   ├── ModulesAwb2bcustomerAdmin.fr-FR.xlf
+│   └── ModulesAwb2bcustomerShop.fr-FR.xlf
 └── views/templates/admin/
     └── customer_card.html.twig         # Back-office card
 ```
 
 ## Translation
 
-The module uses PrestaShop's new translation system. Domain: `Modules.Awb2bcustomer.Admin`.
+The module uses PrestaShop's new translation system. Domains: `Modules.Awb2bcustomer.Admin` (back-office)
+and `Modules.Awb2bcustomer.Shop` (help text of the front-office form).
 
 ## License
 

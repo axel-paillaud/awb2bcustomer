@@ -24,6 +24,7 @@ if (!defined('_PS_VERSION_')) {
 class AwB2bCustomer extends Module
 {
     private const TRANSLATION_DOMAIN = 'Modules.Awb2bcustomer.Admin';
+    private const SHOP_TRANSLATION_DOMAIN = 'Modules.Awb2bcustomer.Shop';
 
     /**
      * Native customer form fields made mandatory. They only exist in the
@@ -84,7 +85,9 @@ class AwB2bCustomer extends Module
      *
      * The SIRET field also gets the maximum length of the `customer.siret`
      * column, so that a too long value is rejected with a clear message
-     * instead of a database error.
+     * instead of a database error, and a help text: the field is free (SIRET,
+     * EU VAT number, or the situation of a customer without a company), the
+     * help text explains it along with the length limit.
      *
      * @param array{fields: array<string, FormField>} $params
      *
@@ -102,6 +105,13 @@ class AwB2bCustomer extends Module
 
         if (isset($fields['siret']) && $fields['siret'] instanceof FormField) {
             $fields['siret']->setMaxLength(self::SIRET_MAX_LENGTH);
+            $fields['siret']->setAvailableValues([
+                'comment' => $this->trans(
+                    'SIRET number, EU VAT number, or your situation (student, company being set up...). %d characters maximum.',
+                    [self::SIRET_MAX_LENGTH],
+                    self::SHOP_TRANSLATION_DOMAIN
+                ),
+            ]);
         }
 
         return [];

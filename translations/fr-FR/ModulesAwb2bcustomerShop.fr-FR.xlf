@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="ModulesAwb2bcustomerShop.xlf" source-language="en" target-language="fr" datatype="plaintext">
+    <body>
+      <trans-unit id="e0a6d8b5fbc6db0f906bc2d96e463ba1" approved="yes">
+        <source>SIRET number, EU VAT number, or your situation (student, company being set up...). %d characters maximum.</source>
+        <target state="final">N° SIRET, n° de TVA, ou votre situation (étudiant, société en création…). %d caractères max.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
