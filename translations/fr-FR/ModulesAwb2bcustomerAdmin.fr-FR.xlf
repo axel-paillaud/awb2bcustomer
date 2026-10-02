@@ -6,9 +6,9 @@
         <source>B2B customer</source>
         <target state="final">Client B2B</target>
       </trans-unit>
-      <trans-unit id="3b3e00beaa7d3bfdd2225d951fd3fb16" approved="yes">
-        <source>Mandatory company and SIRET fields at registration, company information on the customer page in the back-office.</source>
-        <target state="final">Champs société et SIRET obligatoires à l&apos;inscription, informations sur l&apos;entreprise sur la fiche client du back-office.</target>
+      <trans-unit id="23903a48b58b230b74703f657a20c731" approved="yes">
+        <source>Mandatory SIRET field at registration, company information on the customer page in the back-office.</source>
+        <target state="final">Champ SIRET obligatoire à l&apos;inscription, informations sur l&apos;entreprise sur la fiche client du back-office.</target>
       </trans-unit>
       <trans-unit id="bb8956c67b82c7444a80c6b2433dd8b4" approved="yes">
         <source>Are you sure you want to uninstall this module?</source>

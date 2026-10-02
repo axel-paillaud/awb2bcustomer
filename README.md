@@ -2,8 +2,9 @@
 
 B2B customer fields for PrestaShop 8 / 9, by [Axelweb](https://axelweb.fr).
 
-Built for B2B shops where every customer is a company: the native `company` and `siret` fields
-of the customer form become mandatory, and are displayed on the customer page of the back-office.
+Built for B2B shops where customers are identified by a professional number: the native `siret` field
+of the customer form becomes mandatory (`company` stays optional), and both are displayed on the
+customer page of the back-office.
 
 ## Requirements
 
@@ -30,7 +31,7 @@ customer form.
 
 | Hook | Role |
 |---|---|
-| `additionalCustomerFormFields` | Makes `company` and `siret` mandatory: the theme renders the `required` attribute and the core validation (`AbstractForm::validate()`) rejects an empty value. Also sets the maximum length of `siret` to 14, the size of the column, and a help text under the field. Adds no field |
+| `additionalCustomerFormFields` | Makes `siret` mandatory (`company` stays optional, see `MANDATORY_FIELDS`): the theme renders the `required` attribute and the core validation (`AbstractForm::validate()`) rejects an empty value. Also sets the maximum length of `siret` to 14, the size of the column, and a help text under the field. Adds no field |
 | `displayAdminCustomers` | Card "Company information" (company, SIRET, edit link) on the customer page of the back-office (Customers > Customers > View), which only shows these fields in the edit form natively |
 
 The hooks do nothing when the B2B mode is disabled (the fields do not exist in the form); the card then

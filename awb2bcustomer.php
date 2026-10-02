@@ -15,7 +15,8 @@ if (!defined('_PS_VERSION_')) {
  * Relies on the native B2B mode of PrestaShop (PS_B2B_ENABLE), which adds the
  * `company` and `siret` fields to the front-office customer form:
  *
- *  - makes both fields mandatory (HTML `required` + server-side validation);
+ *  - makes `siret` mandatory (HTML `required` + server-side validation),
+ *    `company` stays optional (customers without a company: students...);
  *  - displays them on the customer page of the back-office, where the core
  *    only shows them in the edit form.
  *
@@ -30,7 +31,7 @@ class AwB2bCustomer extends Module
      * Native customer form fields made mandatory. They only exist in the
      * format when the B2B mode is enabled (see CustomerFormatter::getFormat()).
      */
-    private const MANDATORY_FIELDS = ['company', 'siret'];
+    private const MANDATORY_FIELDS = ['siret'];
 
     /** Size of the `customer.siret` column (see Customer::$definition). */
     private const SIRET_MAX_LENGTH = 14;
@@ -48,7 +49,7 @@ class AwB2bCustomer extends Module
         parent::__construct();
 
         $this->displayName = $this->trans('B2B customer', [], self::TRANSLATION_DOMAIN);
-        $this->description = $this->trans('Mandatory company and SIRET fields at registration, company information on the customer page in the back-office.', [], self::TRANSLATION_DOMAIN);
+        $this->description = $this->trans('Mandatory SIRET field at registration, company information on the customer page in the back-office.', [], self::TRANSLATION_DOMAIN);
 
         $this->confirmUninstall = $this->trans('Are you sure you want to uninstall this module?', [], self::TRANSLATION_DOMAIN);
 
@@ -79,9 +80,10 @@ class AwB2bCustomer extends Module
      * information) is built, with the fields passed by reference.
      *
      * The core adds `company` and `siret` as optional fields when the B2B mode
-     * is enabled: this makes them mandatory. The theme renders the `required`
-     * attribute and AbstractForm::validate() rejects an empty value, so both
-     * the HTML and the server-side validation are covered.
+     * is enabled: this makes `siret` mandatory (`company` stays optional). The
+     * theme renders the `required` attribute and AbstractForm::validate()
+     * rejects an empty value, so both the HTML and the server-side validation
+     * are covered.
      *
      * The SIRET field also gets the maximum length of the `customer.siret`
      * column, so that a too long value is rejected with a clear message
